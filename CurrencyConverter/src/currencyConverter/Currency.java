@@ -8,6 +8,8 @@ public class Currency {
 		this.code = code;
 	}
 	
+	Currency() {}
+
 	public static String convertToCode(int num) {
 		switch (num) {
 		case 1:
