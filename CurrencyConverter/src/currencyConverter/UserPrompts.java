@@ -18,6 +18,15 @@ public  class UserPrompts {
 		System.out.println("Please enter a value to convert:");
 		double value = scanner.nextDouble();
 		return value;
-
+	}
+	
+	public static boolean promptUserGoAgain() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Press 'y' to convert another amount.");
+		String selection = scanner.next();
+		if (selection.equals("y") || selection.equals("Y")) {
+			return true;
+		}
+		return false;
 	}
 }
