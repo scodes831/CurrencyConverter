@@ -6,7 +6,37 @@ public class Currency {
 	
 	Currency(String code, double value) {
 		this.code = code;
-		
+	}
+	
+	public static String convertToCode(int num) {
+		switch (num) {
+		case 1:
+			return "EUR";
+		case 2:
+			return "USD";
+		case 3:
+			return "GBP";
+		case 4:
+			return "AUD";
+		case 5:
+			return "CAD";
+		case 6: 
+			return "BRL";
+		case 7: 
+			return "CNY";
+		case 8: 
+			return "HKD";
+		case 9: 
+			return "MXN";
+		case 10:
+			return "INR";
+		case 11: 
+			return "KRW";
+		case 12:
+			return "JPY";
+		default:
+			return "Please enter a valid selection.";
+		}
 	}
 	public String getCode() {
 		return code;
