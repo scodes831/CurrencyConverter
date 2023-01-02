@@ -6,4 +6,5 @@
  *
  */
 module CurrencyConverter {
+	requires java.net.http;
 }
