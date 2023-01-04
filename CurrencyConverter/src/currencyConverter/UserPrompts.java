@@ -1,5 +1,6 @@
 package currencyConverter;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public  class UserPrompts {
@@ -13,10 +14,10 @@ public  class UserPrompts {
 		return code;
 	}
 
-	public static double promptUserValue() {
+	public static BigDecimal promptUserValue() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Please enter a value to convert:");
-		double value = scanner.nextDouble();
+		BigDecimal value = new BigDecimal(scanner.nextDouble());
 		return value;
 	}
 	
