@@ -1,16 +1,17 @@
 package currencyConverter;
 
-import java.util.ArrayList;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.HashMap;
 
 public class CurrencyConverter {
 	
-	private final Currency BASE_CURRENCY = new Currency("USD", 1.0);
 	private Currency origCurrency;
 	private Currency newCurrency;
 
 	public void promptUserForInputs() {
 		int origCurrencyInput = UserPrompts.promptUserCurrencyCode("currency you want to convert");
-		double origValueInput = UserPrompts.promptUserValue();
+		BigDecimal origValueInput = UserPrompts.promptUserValue();
 		int newCurrencyInput = UserPrompts.promptUserCurrencyCode("currency to convert to");
 		setOrigCurrency(new Currency((Currency.convertToCode(origCurrencyInput)), origValueInput));
 		setNewCurrency(new Currency());
@@ -19,8 +20,17 @@ public class CurrencyConverter {
 				+ newCurrency.getCode());
 	}
 
-	public void getExchangeRate(Currency origCurrency, Currency newCurrency) {
+	public void findExchangeRates(HashMap<String,BigDecimal> currenciesMap) {
+		origCurrency.setExchangeRateUSD(currenciesMap.get(origCurrency.getCode()));
+		newCurrency.setExchangeRateUSD(currenciesMap.get(newCurrency.getCode()));
+		System.out.println("exchange rate for orig currency is: " + origCurrency.getExchangeRateUSD());
+		System.out.println("exchange rate for new currency is: " + newCurrency.getExchangeRateUSD());
 
+	}
+	
+	public void calculateExchangeValue() {
+		BigDecimal newAmount = newCurrency.getExchangeRateUSD().divide(origCurrency.getExchangeRateUSD(), 2, RoundingMode.HALF_UP).multiply(origCurrency.getValue());
+		newCurrency.setValue(newAmount);
 	}
 
 	public Currency getOrigCurrency() {
@@ -37,9 +47,5 @@ public class CurrencyConverter {
 
 	public void setNewCurrency(Currency newCurrency) {
 		this.newCurrency = newCurrency;
-	}
-
-	public Currency getBASE_CURRENCY() {
-		return BASE_CURRENCY;
 	}
 }
