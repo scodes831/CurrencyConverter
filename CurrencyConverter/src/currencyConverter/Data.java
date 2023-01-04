@@ -32,7 +32,6 @@ public class Data {
 	private static int calculateHeaderIndex(String response) {
 		int headerInstance = 0;
 		for (int i=0; i<response.length(); i++) {
-			System.out.println(response.charAt(i));
 			if (response.charAt(i) == '{') {
 				headerInstance++;
 				if (headerInstance == 2) {
