@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 
 public class Currency {
 	private String code;
-	private double value;
+	private BigDecimal value;
 	private BigDecimal exchangeRateUSD;
 	
-	Currency(String code, double value) {
+	Currency(String code, BigDecimal value) {
 		this.code = code;
 		this.value = value;
 	}
