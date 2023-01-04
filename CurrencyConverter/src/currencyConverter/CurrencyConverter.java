@@ -3,6 +3,10 @@ package currencyConverter;
 import java.util.ArrayList;
 
 public class CurrencyConverter {
+	
+	private final Currency BASE_CURRENCY = new Currency("USD", 1.0);
+	private Currency origCurrency;
+	private Currency newCurrency;
 
 	public ArrayList<Currency> promptUserForInputs() {
 		ArrayList<Currency> currencyInputs = new ArrayList<Currency>();
@@ -23,12 +27,23 @@ public class CurrencyConverter {
 
 	}
 
-	// api call to get exchange rate for original and new currency code
-	// create instance of original currency and new currency, set values
-	// perform calculation
-	// get value 1:1
-	// use that to calculate amount from user input
-	// display final calculation
-	// ask user if they want to do another conversion
+	public Currency getOrigCurrency() {
+		return origCurrency;
+	}
 
+	public void setOrigCurrency(Currency origCurrency) {
+		this.origCurrency = origCurrency;
+	}
+
+	public Currency getNewCurrency() {
+		return newCurrency;
+	}
+
+	public void setNewCurrency(Currency newCurrency) {
+		this.newCurrency = newCurrency;
+	}
+
+	public Currency getBASE_CURRENCY() {
+		return BASE_CURRENCY;
+	}
 }
