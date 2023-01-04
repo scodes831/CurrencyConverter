@@ -50,10 +50,10 @@ public class Currency {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public double getValue() {
+	public BigDecimal getValue() {
 		return value;
 	}
-	public void setValue(double value) {
+	public void setValue(BigDecimal value) {
 		this.value = value;
 	}
 
