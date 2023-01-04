@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Data {
 	
-	public static Map<String,BigDecimal> convertResponseToMap(String response) {
+	public static HashMap<String,BigDecimal> convertResponseToMap(String response) {
 		HashMap<String,BigDecimal> responseMap = new HashMap<String,BigDecimal>();
 		String[] currenciesArr = response.split(",");
 		for (String s : currenciesArr) {
