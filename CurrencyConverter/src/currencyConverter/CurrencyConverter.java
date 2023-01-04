@@ -8,19 +8,15 @@ public class CurrencyConverter {
 	private Currency origCurrency;
 	private Currency newCurrency;
 
-	public ArrayList<Currency> promptUserForInputs() {
-		ArrayList<Currency> currencyInputs = new ArrayList<Currency>();
+	public void promptUserForInputs() {
 		int origCurrencyInput = UserPrompts.promptUserCurrencyCode("currency you want to convert");
 		double origValueInput = UserPrompts.promptUserValue();
 		int newCurrencyInput = UserPrompts.promptUserCurrencyCode("currency to convert to");
-		Currency origCurrency = new Currency((Currency.convertToCode(origCurrencyInput)), origValueInput);
-		Currency newCurrency = new Currency();
-		currencyInputs.add(origCurrency);
-		currencyInputs.add(newCurrency);
+		setOrigCurrency(new Currency((Currency.convertToCode(origCurrencyInput)), origValueInput));
+		setNewCurrency(new Currency());
 		newCurrency.setCode(Currency.convertToCode(newCurrencyInput));
-		System.out.println("Converting " + origValueInput + " " + Currency.convertToCode(origCurrencyInput) + " to "
-				+ Currency.convertToCode(newCurrencyInput) + "...");
-		return currencyInputs;
+		System.out.println("Converting " + origCurrency.getValue() + " " + origCurrency.getCode() + " to "
+				+ newCurrency.getCode());
 	}
 
 	public void getExchangeRate(Currency origCurrency, Currency newCurrency) {
