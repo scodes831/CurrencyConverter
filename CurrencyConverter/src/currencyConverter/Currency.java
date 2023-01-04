@@ -3,6 +3,7 @@ package currencyConverter;
 public class Currency {
 	private String code;
 	private double value;
+	private double exchangeRateUSD;
 	
 	Currency(String code, double value) {
 		this.code = code;
@@ -52,6 +53,14 @@ public class Currency {
 	}
 	public void setValue(double value) {
 		this.value = value;
+	}
+
+	public double getExchangeRateUSD() {
+		return exchangeRateUSD;
+	}
+
+	public void setExchangeRateUSD(double exchangeRateUSD) {
+		this.exchangeRateUSD = exchangeRateUSD;
 	}
 
 }
