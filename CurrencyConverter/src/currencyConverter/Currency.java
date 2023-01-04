@@ -1,9 +1,11 @@
 package currencyConverter;
 
+import java.math.BigDecimal;
+
 public class Currency {
 	private String code;
 	private double value;
-	private double exchangeRateUSD;
+	private BigDecimal exchangeRateUSD;
 	
 	Currency(String code, double value) {
 		this.code = code;
@@ -55,12 +57,12 @@ public class Currency {
 		this.value = value;
 	}
 
-	public double getExchangeRateUSD() {
+	public BigDecimal getExchangeRateUSD() {
 		return exchangeRateUSD;
 	}
 
-	public void setExchangeRateUSD(double exchangeRateUSD) {
-		this.exchangeRateUSD = exchangeRateUSD;
+	public void setExchangeRateUSD(BigDecimal bigDecimal) {
+		this.exchangeRateUSD = bigDecimal;
 	}
 
 }
