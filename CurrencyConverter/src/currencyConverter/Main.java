@@ -15,31 +15,33 @@ public class Main {
 			CurrencyConverter currencyConverter = new CurrencyConverter();
 			currencyConverter.promptUserForInputs();
 			HttpURLConnection connection;
-			
+
 			try {
-				
+
 				URL url = new URL("https://api.freecurrencyapi.com/v1/latest");
 				connection = (HttpURLConnection) url.openConnection();
 				connection.setRequestMethod("GET");
 				connection.setRequestProperty("apikey", "nGsxt3T0lFZPs5hEhaDkg8eSDO66UsWa8PKQp1jR");
 				StringBuilder response;
-				
+
 				try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
 					String line;
 					response = new StringBuilder();
-					
+
 					while ((line = in.readLine()) != null) {
 						response.append(line);
 					}
 				}
-				
-				if (connection.getResponseCode() == 200 ) {
+
+				if (connection.getResponseCode() == 200) {
 					String formattedInput = Data.formatStringResponse(response.toString());
-					HashMap<String,BigDecimal> inputMap = Data.convertResponseToMap(formattedInput);
+					HashMap<String, BigDecimal> inputMap = Data.convertResponseToMap(formattedInput);
 					currencyConverter.findExchangeRates(inputMap);
 					currencyConverter.calculateExchangeValue();
 					System.out.println(currencyConverter.getOrigCurrency().getValue() + " "
-							+ currencyConverter.getOrigCurrency().getCode() + " = " + currencyConverter.getNewCurrency().getValue() + " " + currencyConverter.getNewCurrency().getCode());
+							+ currencyConverter.getOrigCurrency().getCode() + " = "
+							+ currencyConverter.getNewCurrency().getValue() + " "
+							+ currencyConverter.getNewCurrency().getCode());
 					boolean goAgainInput = UserPrompts.promptUserGoAgain();
 					if (!goAgainInput) {
 						goAgain = false;
@@ -50,13 +52,11 @@ public class Main {
 				} else {
 					throw new Exception("Internal Server Error");
 				}
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 		} while (goAgain);
-		
-		
 	}
 }
