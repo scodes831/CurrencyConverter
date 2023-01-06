@@ -21,7 +21,7 @@ public class Main {
 				URL url = new URL("https://api.freecurrencyapi.com/v1/latest");
 				connection = (HttpURLConnection) url.openConnection();
 				connection.setRequestMethod("GET");
-				connection.setRequestProperty("apikey", "nGsxt3T0lFZPs5hEhaDkg8eSDO66UsWa8PKQp1jR");
+				connection.setRequestProperty("apikey", System.getenv("CURRENCY_API_KEY"));
 				StringBuilder response;
 
 				try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
