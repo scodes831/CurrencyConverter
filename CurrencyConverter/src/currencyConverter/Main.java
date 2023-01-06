@@ -31,16 +31,23 @@ public class Main {
 					response.append(line);
 				}
 			}
-			String formattedInput = Data.formatStringResponse(response.toString());
-			HashMap<String,BigDecimal> inputMap = Data.convertResponseToMap(formattedInput);
-			currencyConverter.findExchangeRates(inputMap);
-			currencyConverter.calculateExchangeValue();
-			System.out.println(currencyConverter.getOrigCurrency().getValue() + " "
-					+ currencyConverter.getOrigCurrency().getCode() + " = " + currencyConverter.getNewCurrency().getValue() + " " + currencyConverter.getNewCurrency().getCode());
+			
+			if (connection.getResponseCode() == 200 ) {
+				String formattedInput = Data.formatStringResponse(response.toString());
+				HashMap<String,BigDecimal> inputMap = Data.convertResponseToMap(formattedInput);
+				currencyConverter.findExchangeRates(inputMap);
+				currencyConverter.calculateExchangeValue();
+				System.out.println(currencyConverter.getOrigCurrency().getValue() + " "
+						+ currencyConverter.getOrigCurrency().getCode() + " = " + currencyConverter.getNewCurrency().getValue() + " " + currencyConverter.getNewCurrency().getCode());
+				connection.disconnect();
+			} else if (connection.getResponseCode() < 500) {
+				throw new Exception("There has been an error processing your request, please try again.");
+			} else {
+				throw new Exception("Internal Server Error");
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			
 		}
 	}
 }
