@@ -23,9 +23,6 @@ public class CurrencyConverter {
 	public void findExchangeRates(HashMap<String,BigDecimal> currenciesMap) {
 		origCurrency.setExchangeRateUSD(currenciesMap.get(origCurrency.getCode()));
 		newCurrency.setExchangeRateUSD(currenciesMap.get(newCurrency.getCode()));
-		System.out.println("exchange rate for orig currency is: " + origCurrency.getExchangeRateUSD());
-		System.out.println("exchange rate for new currency is: " + newCurrency.getExchangeRateUSD());
-
 	}
 	
 	public void calculateExchangeValue() {
