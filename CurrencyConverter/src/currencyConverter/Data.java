@@ -1,6 +1,7 @@
 package currencyConverter;
 
 import java.math.BigDecimal;
+import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,16 +24,16 @@ public class Data {
 		return withoutPunctuation;
 	}
 	
-	public static String formatStringResponse(String response) {
-		int headerIndex = calculateHeaderIndex(response);
-		String formattedResponse = removeHeaderEnding(response, headerIndex, response.length()-3);
+	public static String formatStringResponse(String string) {
+		int headerIndex = calculateHeaderIndex(string);
+		String formattedResponse = removeHeaderEnding(string, headerIndex, string.length()-3);
 		return formattedResponse;
 	}
 	
-	private static int calculateHeaderIndex(String response) {
+	private static int calculateHeaderIndex(String string) {
 		int headerInstance = 0;
-		for (int i=0; i<response.length(); i++) {
-			if (response.charAt(i) == '{') {
+		for (int i=0; i<((CharSequence) string).length(); i++) {
+			if (((CharSequence) string).charAt(i) == '{') {
 				headerInstance++;
 				if (headerInstance == 2) {
 					return i+1;
@@ -42,8 +43,8 @@ public class Data {
 		return headerInstance;
 	}
 	
-	private static String removeHeaderEnding(String response, int headerIndex, int endIndex) {
-		String formattedResponse = response.substring(headerIndex, endIndex);
+	private static String removeHeaderEnding(String string, int headerIndex, int endIndex) {
+		String formattedResponse = new String(string).substring(headerIndex, endIndex);
 		return formattedResponse;
 	}
 	
